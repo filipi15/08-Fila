@@ -74,7 +74,6 @@ void inicializar()
 
 }
 
-
 void insere()
 {
 	// aloca memoria dinamicamente para o novo elemento
@@ -88,13 +87,35 @@ void insere()
 	cin >> novo->valor;
 	novo->prox = NULL;
 
-
+	if (inicio == NULL) {
+		inicio = novo;
+		fim = novo;
+	}
+	else {
+		fim->prox = novo;
+		fim = novo;
+	}
 }
 
 void remove()
 {
+	NO* aux = inicio;
 
+	if (inicio == NULL) {
+		cout << "A lista esta vazia";
+		return;
+	}
+	else {
+		cout << "Voce ira excluir o elemento:  " << inicio->valor << endl;
 
-
+		if (inicio == fim) {
+			inicio = NULL;
+			fim = NULL;
+			free(aux);
+		}
+		else {
+			inicio = inicio->prox;
+			free(aux);
+		}
+	}
 }
-
